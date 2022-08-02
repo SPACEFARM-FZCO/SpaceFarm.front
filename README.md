@@ -108,4 +108,4 @@ This directory contains your Vuex store files. Creating a file in this directory
 
 ## How universal Nuxt app is work
 
-![image info](./static/images/readme/nuxt-structure.jpeg)
+![image info](./static/nuxt-structure.jpeg)

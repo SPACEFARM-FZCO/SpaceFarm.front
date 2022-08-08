@@ -1,5 +1,6 @@
 {
-  "name": "Rakhimov Kamol Sameevich - frontend developer | SpaceFarm",
+  "name": "SpaceFarm",
+  "author": "Rakhimov Kamol Sameevich | Front-end developer (SpaceFarm)",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +12,7 @@
   "dependencies": {
     "@nuxtjs/auth-next": "^5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/gtm": "^2.4.0",
     "@vue/composition-api": "^1.7.0",
     "apexcharts": "^3.35.3",
     "core-js": "^3.19.3",

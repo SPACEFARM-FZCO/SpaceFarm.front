@@ -84,5 +84,11 @@ export default {
         }
       }
     }
-  }
+  },
+
+    gtm: {
+    id: 'G-03R5MX2NFD'
+  },
+
+
 }

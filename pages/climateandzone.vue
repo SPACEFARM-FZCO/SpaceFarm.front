@@ -1,51 +1,107 @@
 <template>
-  <div class="settings" v-if="response">
+  <div class="settings" v-if="climateModalData">
     <p class="settings-par">Climate settings</p>
     <div class="settings-climate">
       <div class="settings-climate__wrapper">
         <div class="settings-climate__item">
-          <div class="settings-climate__sphere">
-            <img src="/icons/Daylight.svg" />
+          <div style="display: flex; justify-content: space-between">
+            <div class="settings-climate__sphere">
+              <img src="/icons/Daylight.svg" />
+            </div>
+            <div
+              @click="
+                climateModal = true;
+                climateModalForm = climateModalData.day_temp;
+                climateModalType = 'day_temp';
+                climateModalTitle = 'Daylight temperature';
+              "
+              class="settings-climate__sphere"
+              style="cursor: pointer; background: #f0f0f0"
+            >
+              <img src="/icons/Pencil.svg" />
+            </div>
           </div>
           <div class="settings-climate__content">
             <span> Daylight temperature </span>
-            <p>{{ response.day_temp }}С</p>
+            <p>{{ climateModalData.day_temp }}С</p>
           </div>
           <img class="settings-climate__item-img" src="/icons/Daylight.svg" />
         </div>
       </div>
       <div class="settings-climate__wrapper">
         <div class="settings-climate__item">
-          <div class="settings-climate__sphere">
-            <img src="/icons/Night.svg" />
+          <div style="display: flex; justify-content: space-between">
+            <div class="settings-climate__sphere">
+              <img src="/icons/Night.svg" />
+            </div>
+            <div
+              class="settings-climate__sphere"
+              @click="
+                climateModal = true;
+                climateModalForm = climateModalData.night_temp;
+                climateModalType = 'night_temp';
+                climateModalTitle = 'Night temperature';
+              "
+              style="cursor: pointer; background: #f0f0f0"
+            >
+              <img src="/icons/Pencil.svg" />
+            </div>
           </div>
           <div class="settings-climate__content">
             <span> Night temperature </span>
-            <p>{{ response.night_temp }}С</p>
+            <p>{{ climateModalData.night_temp }}С</p>
           </div>
           <img class="settings-climate__item-img" src="/icons/Night.svg" />
         </div>
       </div>
       <div class="settings-climate__wrapper">
         <div class="settings-climate__item">
-          <div class="settings-climate__sphere">
-            <img src="/icons/C02.svg" />
+          <div style="display: flex; justify-content: space-between">
+            <div class="settings-climate__sphere">
+              <img src="/icons/C02.svg" />
+            </div>
+            <div
+              class="settings-climate__sphere"
+              @click="
+                climateModal = true;
+                climateModalForm = climateModalData.co2_range;
+                climateModalType = 'co2_range';
+                climateModalTitle = 'CO2 range';
+              "
+              style="cursor: pointer; background: #f0f0f0"
+            >
+              <img src="/icons/Pencil.svg" />
+            </div>
           </div>
           <div class="settings-climate__content">
             <span> CO2 range </span>
-            <p>{{ response.co2_range }}</p>
+            <p>{{ climateModalData.co2_range }}</p>
           </div>
           <img class="settings-climate__item-img" src="/icons/C02.svg" />
         </div>
       </div>
       <div class="settings-climate__wrapper">
         <div class="settings-climate__item">
-          <div class="settings-climate__sphere">
-            <img src="/icons/Humidity.svg" />
+          <div style="display: flex; justify-content: space-between">
+            <div class="settings-climate__sphere">
+              <img src="/icons/Humidity.svg" />
+            </div>
+            <div
+              class="settings-climate__sphere"
+              @click="
+                climateModal = true;
+                climateModalForm = climateModalData.humidity_range;
+                climateModalType = 'humidity_range';
+                climateModalTitle = 'Humidity range';
+              "
+              style="cursor: pointer; background: #f0f0f0"
+            >
+              <img src="/icons/Pencil.svg" />
+            </div>
           </div>
           <div class="settings-climate__content">
             <span> Humidity range </span>
-            <p>{{ response.humidity_range }} %</p>
+            <p>{{ climateModalData.humidity_range }} %</p>
           </div>
           <img class="settings-climate__item-img" src="/icons/Humidity.svg" />
         </div>
@@ -183,16 +239,28 @@
             "
             class="settings-crud__time-item"
           >
-            <div>
-              <img src="/icons/Sun.svg" />
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="/icons/Sun.svg" />
+              </div>
+              <div>
+                <p>Daylight schedule</p>
+                <span>{{
+                  item.daylight_schedule
+                    ? item.daylight_schedule
+                    : "please, add time"
+                }}</span>
+              </div>
             </div>
-            <div>
-              <p>Daylight schedule</p>
-              <span>{{
-                item.daylight_schedule
-                  ? item.daylight_schedule
-                  : "please, add time"
-              }}</span>
+            <div class="settings-crud__time-item-switch">
+              <div>
+                <span> Auto </span>
+                <AppleSwitch v-model="switchAuto" />
+              </div>
+              <div>
+                <span> Manual </span>
+                <AppleSwitch v-model="switchAuto" />
+              </div>
             </div>
           </div>
           <div
@@ -202,16 +270,22 @@
             "
             class="settings-crud__time-item"
           >
-            <div>
-              <img src="/icons/Waterdrop.svg" />
+            <div style="display: flex; align-items: center">
+              <div>
+                <img src="/icons/Waterdrop.svg" />
+              </div>
+              <div>
+                <p>Watering schedule</p>
+                <span>{{
+                  item.watering_schedule
+                    ? item.watering_schedule
+                    : "please, add time"
+                }}</span>
+              </div>
             </div>
-            <div>
-              <p>Watering schedule</p>
-              <span>{{
-                item.watering_schedule
-                  ? item.watering_schedule
-                  : "please, add time"
-              }}</span>
+            <div class="settings-crud__time-item-switch">
+              <AppleSwitch v-model="switchAuto" />
+              <AppleSwitch v-model="switchAuto" />
             </div>
           </div>
         </div>
@@ -326,6 +400,22 @@
       </template>
     </Modal>
 
+    <Modal
+      :title="climateModalTitle"
+      v-if="climateModal"
+      @close="
+        climateModal = false;
+        climateModalForm = null;
+      "
+    >
+      <template #content>
+        <form @submit.prevent="saveClimateSetting()">
+          <input required type="text" v-model="climateModalForm" />
+          <button type="submit" style="width: 100%">save</button>
+        </form>
+      </template>
+    </Modal>
+
     <!-- <Modal
       title="Zone settings"
       v-if="change_zone_modal"
@@ -400,14 +490,23 @@ export default {
       },
       watering_schedule_list: [],
 
+      climateModalTitle: null,
+      climateModal: false,
+      climateModalForm: null,
+      climateModalType: null,
+      climateModalData: null,
+
       response: null,
       zones: null,
+
+      switchAuto: false,
     };
   },
   fetchOnServer: false,
   async fetch() {
     this.getData();
   },
+
   methods: {
     openChangeModal() {
       this.change_zone_modal = true;
@@ -418,7 +517,12 @@ export default {
         .then((res) => {
           this.response = res;
           this.zones = res.zones;
-          console.log(this.zones);
+          this.climateModalData = {
+            day_temp: res.day_temp,
+            night_temp: res.night_temp,
+            co2_range: res.co2_range,
+            humidity_range: res.humidity_range,
+          };
         })
         .catch((err) => {
           console.log(err);
@@ -457,7 +561,6 @@ export default {
         watering_schedule: null,
       });
     },
-
     saveDaylightSchedule() {
       this.zones.forEach((zone, id) => {
         if (id == this.current_zone.id) {
@@ -490,6 +593,23 @@ export default {
           }
         }
       });
+    },
+
+    saveClimateSetting() {
+      for (const [key, value] of Object.entries(this.climateModalData)) {
+        if (this.climateModalType === key) {
+          this.climateModalData[key] = this.climateModalForm;
+        }
+      }
+      console.log(this.climateModalData);
+      this.$axios
+        .$post("/winrenboard/climatezonesettings", this.climateModalData)
+        .then((res) => {
+          this.climateModal = false;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -711,6 +831,7 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
+    justify-content: space-between;
     img {
       margin-right: 14px;
     }
@@ -726,6 +847,22 @@ export default {
     }
   }
 
+  &-crud__time-item-switch {
+    display: flex;
+    font-size: 14px;
+    position: relative;
+    span {
+      position: absolute;
+      top: -35px;
+    }
+    * {
+      width: 60px;
+      @include less-than(tablet) {
+        width: 45px;
+      }
+    }
+  }
+
   &-crud_add {
     margin-right: 20px;
     display: flex;
@@ -737,6 +874,15 @@ export default {
     background: #f2f2f2;
     border-radius: 25px;
     cursor: pointer;
+    transition: all ease 0.4s;
+    &:hover {
+      background: #edf4e7;
+      color: #77a648;
+      .settings-crud_add-plus {
+        color: #77a648;
+        background: #77a6485b;
+      }
+    }
     @include less-than(tablet) {
       width: 100%;
       margin-bottom: 20px;
@@ -753,6 +899,7 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    transition: all ease 0.4s;
     span {
       margin-top: -3px;
     }

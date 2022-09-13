@@ -11,7 +11,7 @@
           <input
             v-model="user.password"
             required
-            :type="showPassword ? 'password' : 'text'"
+            :type="!showPassword ? 'password' : 'text'"
             placeholder="Password"
           />
           <i
@@ -129,8 +129,7 @@ export default {
     color: #a8a8a8;
   }
 
-  input[type="email"],
-  input[type="password"] {
+  input {
     margin: 10px 0;
     width: 100%;
     border: 2px solid transparent;

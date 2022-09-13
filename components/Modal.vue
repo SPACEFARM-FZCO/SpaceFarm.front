@@ -6,14 +6,45 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
         "
       >
-        <div style="color: #0c872e; text-transform: capitalize">
+        <div style="text-transform: capitalize; font-size: 20px">
           {{ title }}
         </div>
         <div class="modal-close" @click="$emit('close')">
-          <i class="bx bx-x-circle"></i>
+          <!-- <i class="bx bx-x"></i> -->
+          <!-- <svg
+            class="svg-icon"
+            style="
+              width: 1em;
+              height: 1em;
+              vertical-align: middle;
+              fill: currentColor;
+              overflow: hidden;
+            "
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M147.374257 158.246733l10.351981-10.351981 717.269914 717.269914-10.351981 10.351981-717.269914-717.269914Z"
+            />
+            <path
+              d="M147.374139 865.168212l717.269914-717.269914 10.351981 10.351981-717.269914 717.269914-10.351981-10.351981Z"
+            />
+          </svg> -->
+          <svg
+            width="30px"
+            height="30px"
+            viewBox="0 0 256 256"
+            id="Flat"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"
+            />
+          </svg>
         </div>
       </div>
 
@@ -110,9 +141,10 @@ export default {
 
 .modal-close {
   border-radius: 12px;
-  padding: 6px 20px;
-  background: #0c872e;
-  color: #fff;
+  // padding: 6px 20px;
+  // background: #0c872e;
+  font-size: 20px;
+  color: #000;
   width: fit-content;
   text-align: end;
   cursor: pointer;
